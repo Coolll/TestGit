@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic,strong) NSArray *dataArray;
+
 @property (nonatomic,assign) NSInteger age;
 
 @end
