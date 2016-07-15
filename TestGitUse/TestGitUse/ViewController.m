@@ -23,6 +23,14 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
+    NSString *testString = @"-1";
+    
+    NSInteger interValue = [testString integerValue];
+    
+    if (interValue) {
+        NSLog(@"进入判断");
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
