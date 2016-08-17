@@ -22,6 +22,34 @@
     
     [self testOperationQueue];
     
+    
+    //1,1,2,3,5,8,13,21,34,55,89,144,233,
+    NSInteger value = [self getValueAtIndex:10];
+    NSLog(@"value:%ld",value);
+
+}
+
+
+- (NSInteger)getValueAtIndex:(NSInteger)index
+{
+    if (index == 0) {
+        return 1;
+    }else if (index == 1){
+        return 1;
+    }else{
+        
+        return [self getValueAtCurrentIndex:1 needIndex:index currentValue:1 lastValue:1];
+    }
+}
+
+
+- (NSInteger)getValueAtCurrentIndex:(NSInteger)currentIndex needIndex:(NSInteger)needIndex currentValue:(NSInteger)currentValue lastValue:(NSInteger)lastValue
+{
+    if (currentIndex == needIndex-1) {
+        return currentValue+lastValue;
+    }else{
+        return [self getValueAtCurrentIndex:currentIndex+1 needIndex:needIndex currentValue:currentValue+lastValue lastValue:currentValue];
+    }
 }
 
 
