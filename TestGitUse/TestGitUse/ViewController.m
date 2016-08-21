@@ -19,40 +19,94 @@
 
 //    [self testThread];
 //    [self testOperation];
-    
+
     [self testOperationQueue];
     
     
     //1,1,2,3,5,8,13,21,34,55,89,144,233,
-    NSInteger value = [self getValueAtIndex:10];
-    NSLog(@"value:%ld",value);
+//    NSInteger value = [self getValueAtIndex:10];
+    
+//    NSLog(@"value:%ld",value);
+    
+    [self testCalculateMaxValue];
 
 }
 
-
+//计算斐波拉西数列
 - (NSInteger)getValueAtIndex:(NSInteger)index
 {
     if (index == 0) {
         return 1;
+        
     }else if (index == 1){
         return 1;
+        
     }else{
         
         return [self getValueAtCurrentIndex:1 needIndex:index currentValue:1 lastValue:1];
     }
 }
 
-
+//递归方法
+//当前的index  目标index 当前的value 上个值的Value
 - (NSInteger)getValueAtCurrentIndex:(NSInteger)currentIndex needIndex:(NSInteger)needIndex currentValue:(NSInteger)currentValue lastValue:(NSInteger)lastValue
 {
     if (currentIndex == needIndex-1) {
         return currentValue+lastValue;
+        
     }else{
+        //当前index＋1了，目标index，当前的值＋上一个的值，当前的值 （这是计算下一个value了）
         return [self getValueAtCurrentIndex:currentIndex+1 needIndex:needIndex currentValue:currentValue+lastValue lastValue:currentValue];
+        
     }
 }
 
+//将A分解为n个整数，获取n个整数的乘积的最大值
+- (void)testCalculateMaxValue
+{
+    NSInteger value = [self calculateValue:20];
+    
+    NSLog(@"value:%ld",value);
 
+}
+
+- (NSInteger)calculateValue:(NSInteger)index
+{
+    if (index == 2){
+        return 1;
+        
+    }else if (index == 3){
+        return 2;
+        
+    }else if (index == 4){
+        return 4;
+        
+    }else {
+        return [self currentIndex:index currentValue:1];
+    }
+}
+
+- (NSInteger)currentIndex:(NSInteger)currentIndex currentValue:(NSInteger)currentValue
+{
+    if (currentIndex == 2) {
+        //分解出来的2是要相乘的
+        return 2*currentValue;
+        
+    }else if (currentIndex == 3){
+        //分解出来的3是要相乘的
+        return 3*currentValue;
+        
+    }else if (currentIndex == 4){
+        //分解出来的4是要相乘的
+        return 4*currentValue;
+        
+    }else{
+        //递归相减 index减3时，value乘3
+        return [self currentIndex:currentIndex-3 currentValue:3*currentValue];
+    }
+}
+
+//thread
 - (void)testThread
 {
     //创建线程
@@ -70,6 +124,7 @@
     
 }
 
+//operation
 - (void)testOperation
 {
     //创建operation对象
