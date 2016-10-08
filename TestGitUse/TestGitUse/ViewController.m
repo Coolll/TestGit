@@ -22,13 +22,17 @@
 
     [self testOperationQueue];
     
-    
     //1,1,2,3,5,8,13,21,34,55,89,144,233,
 //    NSInteger value = [self getValueAtIndex:10];
     
 //    NSLog(@"value:%ld",value);
     
     [self testCalculateMaxValue];
+    
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+    customView.opaque = NO;
+    customView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:customView];
 
 }
 
